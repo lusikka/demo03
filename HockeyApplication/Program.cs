@@ -11,8 +11,11 @@ namespace HockeyApplication
         static void Main(string[] args)
         {
             int choice = 0;
+            string[] enemyName1 = { "Holy", "Golden", "Mighty", "Evil", "Menacing", "Cold", "Hot", "Puck", "Stick", "Stone", "Blasting", "Silver", "Explosive", "Dreamy", "Speedy", "Sluggish", "Purple", "Best", "Rampaging", "Rage", "Peaceful", "Green", "Red", "Mysterious", "Ice", "Top Cheese", "Sonic", "Overpowered" };
+            string[] enemyName2 = { "Bears", "Ducks", "Wild", "Penguins", "Fish", "Coyotes", "Knights", "Wildcats", "Panthers", "Cats", "Lightning", "Explosions", "Blasters", "Winners", "Hockeyers", "Trains", "Sound", "Rampage", "Kings", "White Knights", "Jets", "Aliens", "Snipers", "Clap Bombs", "Snappers" };
             Hockey hockey = new Hockey();
             Random random = new Random();
+            Random teamname = new Random();
             hockey.Points = 0;
             hockey.Wins = 0;
             hockey.Losses = 0;
@@ -24,6 +27,8 @@ namespace HockeyApplication
             {
                 int enscore = random.Next(9);
                 int youscore = random.Next(9);
+                int ranEn1 = teamname.Next(enemyName1.Length);
+                int ranEn2 = teamname.Next(enemyName2.Length);
                 Console.WriteLine(hockey.TeamName + "'s regular season is underway. What would you like to do?");
                 //Console.WriteLine("1. Win a game!");
                 //Console.WriteLine("2. Lose a game...");
@@ -50,9 +55,10 @@ namespace HockeyApplication
                 }
                 else if (choice == 3)
                 {
+                    Console.WriteLine("Your next game will be against the " + enemyName1[ranEn1] + " " + enemyName2[ranEn2]);
                     Console.WriteLine("You play in a game. Good luck!");
                     Console.WriteLine("The game has ended.");
-                    Console.WriteLine(hockey.TeamName + ": " + youscore + ", Opponent: " + enscore);
+                    Console.WriteLine(hockey.TeamName + ": " + youscore + " " + enemyName1[ranEn1] + " " + enemyName2[ranEn2] + ": " + enscore);
                     if (youscore > enscore)
                     {
                         hockey.WinGame();
@@ -74,7 +80,7 @@ namespace HockeyApplication
             } while ((hockey.Wins + hockey.Losses) < 82);
             Console.WriteLine("---------------------------------------------");
             Console.WriteLine("The regular season has ended. " + hockey.TeamName + " has " + hockey.Points + " points.");
-            if (hockey.Points >= 84)
+            if (hockey.Points >= 90)
             {
                 Console.WriteLine("Your team made the playoffs!! Well done. The real hockey begins now...");
             }
