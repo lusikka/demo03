@@ -50,7 +50,9 @@ namespace HockeyApplication
             }
             Console.WriteLine(TeamName + "'s stats: " + Wins + "-" + Losses + "-" + Ties);
             Console.WriteLine(TeamName + " has " + Points + " points.");
-            
+            Console.WriteLine("Attack power: " + Attack);
+            Console.WriteLine("Defensive ability: " + Defense);
+
         }
         public void GMChat()
         {
@@ -78,22 +80,43 @@ namespace HockeyApplication
             Console.WriteLine("Welcome to the player shop! What'cha buyin'?");
             Console.WriteLine("1. Defenseman - 300 hockey bucks");
             Console.WriteLine("2. Scoring winger - 400 hockey bucks");
+            Console.WriteLine("3. Nothing, thank you.");
             string line3 = Console.ReadLine();
             playchoice = int.Parse(line3);
             if (playchoice == 1)
             {
-                Upgrade = true;
-                Defense += 1;
-                Money -= 300;
-                Console.WriteLine("Thanks for your purchase.");
+                if (Money >= 300)
+                {
+                    Upgrade = true;
+                    Defense += 1;
+                    Money -= 300;
+                    Console.WriteLine("Thanks for your purchase.");
+                }
+                else
+                {
+                    Console.WriteLine("You don't have enough money.");
+                }
             }
             else if (playchoice == 2)
             {
-                Upgrade = true;
-                Attack += 1;
-                Money -= 400;
-                Console.WriteLine("Thanks for your purchase.");
+                if (Money >= 400)
+                {
+                    Upgrade = true;
+                    Attack += 1;
+                    Money -= 400;
+                    Console.WriteLine("Thanks for your purchase.");
+                }
+                else
+                {
+                    Console.WriteLine("You don't have enough money.");
+                }
             }
+
+            else if (playchoice == 3)
+            {
+                Console.WriteLine("I see. Come again!");
+            }
+
             else
             {
                 Console.WriteLine("Not a valid option.");

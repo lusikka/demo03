@@ -77,6 +77,10 @@ namespace HockeyApplication
                         hockey.TieGame();
                     }
                 }
+                else if (choice == 4)
+                {
+                    hockey.PlayerBuy();
+                }
                 else
                 {
                     Console.WriteLine("Not a valid option.");
