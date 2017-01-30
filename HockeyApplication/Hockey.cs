@@ -8,28 +8,35 @@ namespace HockeyApplication
 {
     class Hockey
     {
+        public bool Upgrade { get; set; }
+        public int Attack { get; set; }
+        public int Defense { get; set; }
         public int Points { get; set; }
         public int Players { get; set; }
         public string TeamName { get; set; }
         public int Wins { get; set; }
         public int Losses { get; set; }
         public int Ties { get; set; }
+        public int Money { get; set; }
         public void WinGame()
         {
             Console.WriteLine("You win the game! Well done.");
             Wins += 1;
             Points += 2;
+            Money += 250;
         }
         public void LoseGame()
         {
             Console.WriteLine("You lose the game...better luck next time.");
             Losses += 1;
+            Money -= 70;
         }
         public void TieGame()
         {
             Console.WriteLine("The game ended in a tie.");
             Ties += 1;
             Points += 1;
+            Money += 100;
         }
         public void CheckStat()
         {
@@ -63,7 +70,36 @@ namespace HockeyApplication
             {
                 Console.WriteLine("We are 50%. This is not enough to make the playoffs, so we'll need to step it up.");
             }
+            Console.WriteLine("Also, we have " + Money + " hockey bucks. You can use them to buy better players!");
         }
+        public void PlayerBuy()
+        {
+            int playchoice = 0;
+            Console.WriteLine("Welcome to the player shop! What'cha buyin'?");
+            Console.WriteLine("1. Defenseman - 300 hockey bucks");
+            Console.WriteLine("2. Scoring winger - 400 hockey bucks");
+            string line3 = Console.ReadLine();
+            playchoice = int.Parse(line3);
+            if (playchoice == 1)
+            {
+                Upgrade = true;
+                Defense += 1;
+                Money -= 300;
+                Console.WriteLine("Thanks for your purchase.");
+            }
+            else if (playchoice == 2)
+            {
+                Upgrade = true;
+                Attack += 1;
+                Money -= 400;
+                Console.WriteLine("Thanks for your purchase.");
+            }
+            else
+            {
+                Console.WriteLine("Not a valid option.");
+            }
+        }
+
     }
       
 
