@@ -29,8 +29,26 @@ namespace HockeyApplication
             hockey.TeamName = line;
             do
             {
-                int enscore = random.Next((7 - hockey.Defense));
+                int enscore = random.Next(8);
                 int youscore = random.Next((6 + hockey.Attack));
+                if ((hockey.Wins + hockey.Losses) >= 21 && (hockey.Wins + hockey.Losses) <= 40)
+                {
+                     enscore = random.Next(15);
+                     youscore = random.Next((6 + hockey.Attack));
+                }
+                else if ((hockey.Wins + hockey.Losses) >= 41 && (hockey.Wins + hockey.Losses) <= 60)
+                {
+                     enscore = random.Next(22);
+                     youscore = random.Next((5 + hockey.Attack));
+                }
+                else if ((hockey.Wins + hockey.Losses) >= 61 && (hockey.Wins + hockey.Losses) <= 80)
+                {
+                     enscore = random.Next(30);
+                     youscore = random.Next((4 + hockey.Attack));
+                }
+               
+                    
+                
                 int ranEn1 = teamname.Next(enemyName1.Length);
                 int ranEn2 = teamname.Next(enemyName2.Length);
                 Console.WriteLine(hockey.TeamName + "'s regular season is underway. What would you like to do?");
@@ -60,6 +78,12 @@ namespace HockeyApplication
                 }
                 else if (choice == 3)
                 {
+                    enscore = enscore - hockey.Defense;
+                    if (enscore < 0)
+                    {
+                        enscore = 0;
+                    }
+                    Console.WriteLine("");
                     Console.WriteLine("Your next game will be against the " + enemyName1[ranEn1] + " " + enemyName2[ranEn2]);
                     Console.WriteLine("You play in a game. Good luck!");
                     Console.WriteLine("The game has ended.");
